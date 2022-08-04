@@ -1,0 +1,40 @@
+.loginPage {
+    position: relative;
+    background-color: whitesmoke;
+    height: 90%;
+    width: 80%;
+    top: 5%;
+    left: 10%;
+    border-radius: 2%;
+}
+
+.title {
+    top: 1.75vh;
+    position: relative;
+    font-family: 'Ubuntu';
+    font-size: 4vmin;
+}
+.banner {
+    position: relative;
+    background-color: #000745;
+    height: 10%;
+    color: white;
+    text-align: center;
+}
+.loginForm {
+    position: relative;
+    left: 25%;
+    width: 35%;
+    top: 25%;
+    font-family: 'Ubuntu';
+    color:#000745
+}
+
+input {
+    font-family: 'Ubuntu';
+    font-weight: bold;
+}
+
+.invalid {
+    color: red;
+}

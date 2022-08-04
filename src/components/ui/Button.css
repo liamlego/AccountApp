@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+
+.block {
+    border-top: 1vmin;
+    border-bottom: 1vmin;
+    border-left: 1vmin;
+    border-right: 1vmin;
+    position: relative;
+    border-radius: 5%;
+    border-color: #F3C141;
+    border-style: solid;
+    color: black;
+    font-size: 4vmin;
+    font-weight: bold;
+    font-family: 'Ubuntu';
+}

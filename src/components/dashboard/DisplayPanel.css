@@ -1,0 +1,14 @@
+.panelBody {
+    position: absolute;
+    background-color:rgba(70, 67, 32, 0.3);
+    width: 85%;
+    height: 75%;
+    left: 18vmin;
+    top: 20%;
+    border-radius: 4%;
+}
+
+.profile1 {
+    top: 2%;
+    left: 2%;
+}
