@@ -1,3 +1,15 @@
+@keyframes profile1Anim {
+    from { opacity: 0%; left:-10%}
+    to { opacity: 100%; left: 2%}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .panel-animation {
+        animation: profile1Anim forwards; /*forwards keeps the final state*/
+        animation-duration: 2s;
+    }
+}
+
 .panelBody {
     position: absolute;
     background-color:rgba(70, 67, 32, 0.3);
@@ -10,5 +22,7 @@
 
 .profile1 {
     top: 2%;
-    left: 2%;
+    opacity: 0%;
+    left: -10%;
 }
+

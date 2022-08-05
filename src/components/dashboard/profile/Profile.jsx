@@ -11,7 +11,7 @@ export const Profile = (props) => {
     const [description, setDescription] = useState("");
 
     return (
-        <div id="PROFILE" className={props.name}>
+        <div id="PROFILE" className={props.classes}>
             <div className="column">
                 <h1>Profile</h1>
 

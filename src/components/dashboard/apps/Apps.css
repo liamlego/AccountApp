@@ -1,0 +1,52 @@
+#APPS {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    font-family: 'Ubuntu';
+    display: inline;
+    color: whitesmoke;
+}
+
+.app-grid {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    row-gap: 5%;
+    column-gap: 2%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 85%;
+}
+
+.imageApp {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20%;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333333; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #222222; 
+  }
