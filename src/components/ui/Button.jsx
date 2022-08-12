@@ -25,7 +25,7 @@ export const Button = (props) => {
     }
 
     return (
-        <button type="button" 
+        <button type="button" id={props.id}
         className='block' style={style}
         onMouseDown={handlePress} onMouseUp={reset} onMouseLeave={reset}>
             {props.text}

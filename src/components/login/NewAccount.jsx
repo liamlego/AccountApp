@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React from 'react'
+import { Button } from '../ui/Button';
 
 import './NewAccount.css'
 
@@ -7,7 +9,13 @@ export const NewAccount = (props) => {
     function handleSubmit() {
         const username = document.getElementById('newUsernameForm').value;
         const password = document.getElementById('newPasswordForm').value;
-        console.log(username + " " + password);
+        const description = document.getElementById('newUserDescription').value;
+
+        axios.post('/endpoint/newAccount', {
+            username: username,
+            password: password,
+            description: description
+        });
     }
 
     return (
@@ -21,10 +29,16 @@ export const NewAccount = (props) => {
                     <h3>New Password</h3>
                     <input type='text' id='newPasswordForm'></input>
                     <br />
+                    <h3>Description</h3>
+                    <textarea id='newUserDescription'></textarea>
                     <br />
                     <input id='NEWACCOUNTSUBMIT' type='submit'></input>
                 </form>
                 </div>
+                <div id='nbtnContainer'>
+                    <Button text="Cancel" id='ncancelBtn' size="1.5" action={props.action} />
+                </div>
+                
             </div>
         </div>
     );

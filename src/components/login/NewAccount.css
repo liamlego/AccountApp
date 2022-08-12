@@ -37,3 +37,15 @@
     border-style: solid;
     font-size: 17px;
 }
+
+#newUserDescription {
+    position: relative;
+    width: 30%;
+    height: 100px;
+}
+
+#ncancelBtn {
+    position: absolute;
+    top: 90%;
+    left: 90%;
+}

@@ -103,7 +103,7 @@ export const LoginPage = (props) => {
                 </div>
 
             </div>
-            {requestAccount && <NewAccount />}
+            {requestAccount && <NewAccount action={setRequestAccount}/>}
         </>
     );
 };
