@@ -1,0 +1,17 @@
+#ACCOUNT {
+position: absolute;
+    width: 95%;
+    height: 95%;
+    font-family: 'Ubuntu';
+    display: inline;
+    color: whitesmoke;
+}
+
+canvas {
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    top: 5%;
+    left: 50%;
+    background-color: black;
+}

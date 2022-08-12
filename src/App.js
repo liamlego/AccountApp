@@ -6,13 +6,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <div className="App">
       {!loggedIn ?
-        <LoginPage ducky='hello' logIn={setLoggedIn}/> :
-        <Dashboard />
+        <LoginPage ducky='hello' logIn={setLoggedIn} setUsername={setUsername} setPassword={setPassword}/> :
+        <Dashboard username={username} password={password}/>
       }
     </div>
   );

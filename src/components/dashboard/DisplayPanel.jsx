@@ -1,8 +1,8 @@
-import React, { createRef } from 'react'
+
 import { Profile } from './profile/Profile';
 import { Apps } from './apps/Apps';
 import { Account } from './account/Account';
-import { Settings } from './settings/Settings';
+import { Admin } from './admin/Admin';
 import { useState } from 'react';
 import './DisplayPanel.css'
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ export const DisplayPanel = (props) => {
     const [profile, setProfile] = useState(true);
     const [apps, setApps] = useState(false);
     const [account, setAccount] = useState(false);
-    const [settings, setSettings] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     // const [loaded, setLoaded] = useState(false);
 
@@ -20,8 +20,49 @@ export const DisplayPanel = (props) => {
         setProfile(a);
         setApps(b);
         setAccount(c);
-        setSettings(d);
+        setAdmin(d);
     }
+
+
+
+    useEffect(() => {
+
+
+        switch (props.display) {
+            case 1:
+                setStates(false, true, false, false);
+            break;
+            case 2:
+                setStates(false, false, true, false);
+                break;
+            case 3:
+                //if () {
+                // check if user has admin rights
+                //}
+                setStates(false, false, false, true);
+                break;
+            default:
+                setStates(true, false, false, false);
+                
+        }
+    }, [props.display]);
+
+    return (
+        <div className={'panelBody'}>
+            {
+            (profile && <Profile classes='profile1 panel-animation' username={props.username}/>)
+            || 
+            (apps && <Apps classes='profile1 panel-animation' username={props.username}/>)
+            ||
+            (account && <Account classes='profile1 panel-animation' username={props.username}/>)
+            ||
+            (admin && <Admin classes='profile1 panel-animation' />)
+            }
+        </div>
+        
+    )
+    
+};
 
     // function addAnimation() {
     //     console.log("hello"+props.name);
@@ -33,7 +74,8 @@ export const DisplayPanel = (props) => {
     //     document.querySelector('.'+props.name).classList.remove('panel-animation');
     // }
 
-    useEffect(() => {
+    
+        // PUT IN useEffect()
         // For viewport animation
         // if (!loaded) {
         //     let options = {
@@ -55,36 +97,3 @@ export const DisplayPanel = (props) => {
         //     observer1.observe(target);
         //     setLoaded(true);
         // }
-
-        switch (props.display) {
-            case 1:
-                setStates(false, true, false, false);
-            break;
-            case 2:
-                setStates(false, false, true, false);
-                break;
-            case 3:
-                setStates(false, false, false, true);
-                break;
-            default:
-                setStates(true, false, false, false);
-                
-        }
-    }, [props.display]);
-
-    return (
-        <div className={'panelBody'}>
-            {
-            (profile && <Profile classes='profile1 panel-animation'/>)
-            || 
-            (apps && <Apps classes='profile1 panel-animation'/>)
-            ||
-            (account && <Account classes='profile1 panel-animation' />)
-            ||
-            (settings && <Settings classes='profile1 panel-animation' />)
-            }
-        </div>
-        
-    )
-    
-};

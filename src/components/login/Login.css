@@ -8,18 +8,24 @@
     border-radius: 2%;
 }
 
-.title {
+.logintitle {
     top: 1.75vh;
     position: relative;
     font-family: 'Ubuntu';
     font-size: 4vmin;
+    left: 10%;
 }
 .banner {
+    top: -2%;
     position: relative;
     background-color: #000745;
     height: 10%;
     color: white;
-    text-align: center;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    
 }
 .loginForm {
     position: relative;
@@ -37,4 +43,15 @@ input {
 
 .invalid {
     color: red;
+}
+
+#nABtna {
+    position: relative;
+    background: none;
+    border: none;
+    font-family: 'Ubuntu';
+    color: blue;
+    cursor: pointer;
+    font-weight:bold;
+    left: -1%;
 }

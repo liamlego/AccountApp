@@ -2,13 +2,15 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import {Button} from '../ui/Button'
 import './Login.css'
-import axios from 'axios'
+import { submitLogin } from '../../api/Requests'
+import { NewAccount } from './NewAccount'
 
 export const LoginPage = (props) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [invalid, setInvalid] = useState(false);
+    const [requestAccount, setRequestAccount] = useState(false);
 
     const [hide, setHide] = useState('');
 
@@ -18,42 +20,56 @@ export const LoginPage = (props) => {
 
     function handlePChange(event) {
         // broken but still kinda works
-        setPassword(password+event.target.value[event.target.value.length-1]);
-        setHide(hide+'*');
-    }
 
-    function wasEnter(event) {
-        console.log(event.key);
+        if (event.key === 'Shift') return;
+
         if (event.key === 'Enter') {
             submit();
+        } else {
+            if (event.keyCode === 8) {
+                setPassword(password.substring(0, password.length-1));
+                setHide(hide.substring(0, hide.length-1));
+            } else {
+                setPassword(password+event.key);
+                setHide(hide+'*');
+            }
         }
+        
     }
 
     function submit() {
-        if (username.length > 0 && password.length > 0) {
-            
-            // Express Endpoint -> http://localhost:3001/endpoint
-            // Flask Endpoint -> http://localhost:5000
+        if (username.length > 0 && password.length > 0) {     
 
-            axios.post('http://localhost:3001/endpoint', {
-                username: username,
-                password: password
-            }   
-            ).then((res) => {
-                console.log(res.data.hello);
+            // from Requests.jsx
+            submitLogin(username, password).then((res) => {
+                
                 let valid = res.data.response;
-                if (valid) {
-                    props.logIn(true);
-                } else {
-                    setInvalid(true);
+                if (valid !== 'ERROR') {
+                    if (valid) {
+                        props.logIn(true);
+                        props.setUsername(username);
+                        props.setPassword(password);
+                    } else {
+                        setInvalid(true);
+                    }
+                    setUsername('');
+                    setPassword('');
+                    setHide('');
                 }
-                setUsername('');
-                setPassword('');
-                setHide('');
             });
-
-
         }
+    }
+
+    function handleNewAccount() {
+        setRequestAccount(true);
+    }
+
+    function handleOver() {
+        document.querySelector("button").style.color = "black";
+    }
+
+    function handleLeave() {
+        document.querySelector("button").style.color = "blue";
     }
 
     return (
@@ -61,7 +77,7 @@ export const LoginPage = (props) => {
             
             <div className='loginPage'>
                 <div className='banner'>
-                    <p className='title'>AppSuite Account</p>
+                    <p className='logintitle'>AppSuite Account</p>
                 </div>
                 <div className='loginForm'>
                     {invalid ? <p className='invalid'>Invalid username or password</p> : <></>}
@@ -75,15 +91,19 @@ export const LoginPage = (props) => {
                         <label>
                             Password
                             <br />
-                            <input type="text" name='password' value={hide} 
-                            onKeyPress={(e) => wasEnter(e)} onChange={handlePChange}/>
+                            <input type="text" name='password' value={hide} readOnly={true} onKeyDown={handlePChange}/>
                         </label>
                     </form>
                     <br />
+                    <button id='nABtna' onClick={handleNewAccount} onMouseOver={handleOver} onMouseLeave={handleLeave}>Create New Account</button>
+                    <br />
+                    <br />
                     <Button text="Login" size="2" action={submit}/> 
+                    
                 </div>
-                 
+
             </div>
+            {requestAccount && <NewAccount />}
         </>
     );
 };

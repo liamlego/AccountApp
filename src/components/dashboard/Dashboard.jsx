@@ -29,11 +29,11 @@ export const Dashboard = (props) => {
                     <Button text="Profile" size='1.5' left='3%' top='10%' width='75%' action={() => setDisplay(0)}/>
                     <Button text="Apps" size='1.5' left='3%' top='12%' width='75%' action={() => setDisplay(1)}/>
                     <Button text="Account" size='1.5' left='3%' top='14%' width='75%' action={() => setDisplay(2)}/>
-                    <Button text="Settings" size='1.5' left='3%' top='16%' width='75%' action={() => setDisplay(3)}/>
+                    <Button text="Admin" size='1.5' left='3%' top='16%' width='75%' action={() => setDisplay(3)}/>
                 </div>
             </div>
 
-            <DisplayPanel display={display}/>
+            <DisplayPanel display={display} username={props.username} password={props.password}/>
         </>
     );
 };
