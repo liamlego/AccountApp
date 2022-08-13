@@ -20,10 +20,12 @@ export const Apps = (props) => {
     useEffect(() => {
         if (!appsLoaded) {
             getApps(props.username).then((res) => {
+                if (res.data.apps[0].length > 0) {
                     setApps(res.data.apps);
                     for (let element in res.data.apps) {
                         mapping[element] = true;
                     }
+                }
             });
             setAppsLoaded(true); 
         } 

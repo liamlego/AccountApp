@@ -1,4 +1,5 @@
 import React from 'react'
+import { requestApp } from '../../../api/Requests';
 import { Button } from '../../ui/Button'
 import './GetApp.css'
 
@@ -7,12 +8,10 @@ export const GetApp = (props) => {
     function handleSubmit() {
 
         const selector = document.getElementById("selectedApp");
-        const value = selector.value;
 
-        const reasonSelector = document.getElementById("accessReason");
-        console.log(reasonSelector.value);
+        //const reasonSelector = document.getElementById("accessReason");
 
-        console.log(value);
+        requestApp(props.username, selector.value);
 
         props.setRequesting(false);
     }

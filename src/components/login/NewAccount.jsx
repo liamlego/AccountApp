@@ -11,7 +11,7 @@ export const NewAccount = (props) => {
         const password = document.getElementById('newPasswordForm').value;
         const description = document.getElementById('newUserDescription').value;
 
-        axios.post('/endpoint/newAccount', {
+        axios.post('http://localhost:3001/endpoint/newAccount', {
             username: username,
             password: password,
             description: description
@@ -27,7 +27,7 @@ export const NewAccount = (props) => {
                     <h3>New Username</h3>
                     <input type='text' id='newUsernameForm'></input>
                     <h3>New Password</h3>
-                    <input type='text' id='newPasswordForm'></input>
+                    <input type='password' id='newPasswordForm'></input>
                     <br />
                     <h3>Description</h3>
                     <textarea id='newUserDescription'></textarea>

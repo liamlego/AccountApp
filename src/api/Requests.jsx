@@ -46,3 +46,17 @@ export function getApps(username) {
             }
     });
 }
+
+export function requestApp(username, app) {
+    return axios.post('http://localhost:3001/endpoint/addApp', {
+        username: username,
+        app: app
+    }).catch(error => {
+        console.log("ERROR could not Reach http//localhost:3001/endpoint/getApp");
+        return {
+            data: {
+                response: "ERROR"
+            }
+        }
+    })
+}

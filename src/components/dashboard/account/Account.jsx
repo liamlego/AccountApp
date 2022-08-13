@@ -1,54 +1,60 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useState } from 'react';
 import {Button} from '../../ui/Button'
 import { GetApp } from './GetApp';
 import './Account.css'
 import { useEffect } from 'react';
 
+import axios from 'axios';
+
+// import controller from './controller'
+
 export const Account = (props) => {
 
-    const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState(''); 
 
     const [requesting, setRequesting] = useState(false);
 
+    const [canvasLoaded, setCanvasLoaded] = useState(false);
+
+
     function loadCanvas() {
-
         const canvas = document.querySelector(".animationCanvas");
-
         const context = canvas.getContext("2d");
-
-        context.fillStyle = 'green';
-        context.fillRect(0, 0, 50,25);
-
+        let x = 0;
+        let y = 0;
+        
+        setInterval(() => {
+            context.fillStyle = 'black';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = 'green';
+            context.fillRect(x, y, 50,25);
+            
+            if (x+50 < canvas.width)
+                x++;
+            if (y+25 < canvas.height)
+                y++;
+        }, 100);
     }
 
     useEffect(() => {
-        loadCanvas();
+        if (!canvasLoaded) loadCanvas();
+
+
+
+
     }, []);
 
-    function handleUInput(event) {
-
-        if (event.key === 'Enter') {
-            // Send request to change password
-            if (newUsername.length > 0) {
-
-            }
-            
-        } else {
-            if (event.key === 'Backspace'){
-                setNewUsername(newUsername.substring(0, newUsername.length-1));
-            } else {
-                setNewUsername(newUsername+event.key);
-            }
-        }
-    }
     function handlePInput(event) {
 
         if (event.key === 'Enter') {
             // Send request to change password
             if (newPassword.length > 0) {
-
+                axios.post('http://localhost:3001/endpoint/newPassword', {
+                    username: props.username,
+                    password: newPassword
+                });
+                setNewPassword('');
             }
             
         } else {
@@ -69,18 +75,17 @@ export const Account = (props) => {
                     <h2>Get App Access</h2>
                     <Button text="Get App" size='2' top='10%' width='10%' action={() => {setRequesting(true)}}/>
                 </div>
-                <h2>New Username</h2>
-                <input type="text" name='username' placeholder={props.username} onKeyDown={handleUInput}/>
                 <h2>New Password</h2>
-                <input type="text" name='password' onKeyDown={handlePInput}/>
+                <input type="password" name='password' onKeyDown={handlePInput} value={newPassword} readOnly={true}/>
 
                 
             </div>
 
             <canvas className='animationCanvas'></canvas>
 
-            {requesting && <GetApp setRequesting={setRequesting}/>}
+            {requesting && <GetApp username={props.username} setRequesting={setRequesting}/>}
         </div>
     );
 
 };
+
