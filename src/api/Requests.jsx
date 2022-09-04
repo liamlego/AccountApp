@@ -5,7 +5,19 @@ import axios from "axios";
 // Flask Endpoint -> http://localhost:5000
 export function submitLogin(username, password) {
 
-    
+        // axios.post('http://127.0.0.1:7777/endpoint/7', {
+        //     username: username,
+        //     password: password
+        // }).then((res) => {
+        //     console.log(res.data.name);
+        // });
+
+        // Have it as a string
+        // I think putting a json object is specific
+        // to express and or they do something to receive it, Im not sure
+        // This just puts it in the normal body after the header
+        //axios.post('http://127.0.0.1:5559', "{username: username, password: password}");
+
         // Returns a promise that axios returns
         return axios.post('http://localhost:3001/endpoint/login', {
             username: username,

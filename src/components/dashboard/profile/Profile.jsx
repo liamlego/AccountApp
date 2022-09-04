@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './Profile.css'
 import background from '../../../resources/background.jpg'
 import { getDescription } from '../../../api/Requests';
+import axios from 'axios';
 
 export const Profile = (props) => {
 
@@ -10,7 +11,7 @@ export const Profile = (props) => {
     const [username, setUsername] = useState("");
     const [profile, setProfile] = useState('http://localhost:3001/images/blank-profile.jpg'); // profile pic
     const [description, setDescription] = useState("");
-
+    const [image, setImage] = useState("");
 
 
     useEffect(() => {
@@ -18,6 +19,10 @@ export const Profile = (props) => {
             setProfile(res.data.profileLink);
             setDescription(res.data.description);
         });
+        // axios.get('http://127.0.0.1:7777/endpoint/7', '{}').then((res) => {
+        //     setImage("data:image/png;base64," + res.data);
+        // });
+
     }, []);
 
     function handleChangeProfilePic() {
@@ -40,7 +45,8 @@ export const Profile = (props) => {
             <div className="column">
 
                 <div className='imageContainer' onClick={handleChangeProfilePic}>
-                    <img src={profile} alt=''/>
+                    {/* <img src={profile} alt=''/> */}
+                    <img src={image} alt="profile" />
                 </div>
             </div>
         </div>

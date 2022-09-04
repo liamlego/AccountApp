@@ -1,8 +1,6 @@
-
 import { Profile } from './profile/Profile';
 import { Apps } from './apps/Apps';
 import { Account } from './account/Account';
-import { Admin } from './admin/Admin';
 import { useState } from 'react';
 import './DisplayPanel.css'
 import { useEffect } from 'react';
@@ -12,7 +10,6 @@ export const DisplayPanel = (props) => {
     const [profile, setProfile] = useState(true);
     const [apps, setApps] = useState(false);
     const [account, setAccount] = useState(false);
-    const [admin, setAdmin] = useState(false);
 
     // const [loaded, setLoaded] = useState(false);
 
@@ -20,7 +17,6 @@ export const DisplayPanel = (props) => {
         setProfile(a);
         setApps(b);
         setAccount(c);
-        setAdmin(d);
     }
 
 
@@ -55,8 +51,6 @@ export const DisplayPanel = (props) => {
             (apps && <Apps classes='profile1 panel-animation' username={props.username}/>)
             ||
             (account && <Account classes='profile1 panel-animation' username={props.username}/>)
-            ||
-            (admin && <Admin classes='profile1 panel-animation' />)
             }
         </div>
         
